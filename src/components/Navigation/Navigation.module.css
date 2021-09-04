@@ -1,18 +1,16 @@
-.container {
-  border-bottom: solid 1px black;
-  padding: 20px;
+.navigation {
+  border-bottom: 1px solid #4b5ed7;
 }
 
-.navLink {
-  color: black;
-  font-size: 25px;
-  font-weight: 500;
+.link {
+  display: inline-block;
   text-decoration: none;
-  padding: 20px;
+  padding: 12px;
+  font-weight: 500;
+  color: #18288c;
+  font-size: 24px;
 }
 
-.avctiveNavLink {
-  color: #0404ff;
-  font-size: 25px;
-  font-weight: 700;
+.activeLink {
+  color: #7888eb;
 }

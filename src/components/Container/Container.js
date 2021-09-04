@@ -1,12 +1,9 @@
+// import PropTypes from 'prop-types';
+
 import s from './Container.module.css';
-import PropTypes from 'prop-types';
 
-const Container = ({ children }) => (
-  <div className={s.container}>{children}</div>
-);
+export default function Container({ children }) {
+  return <div className={s.container}>{children}</div>;
+}
 
-Container.propTypes = {
-  children: PropTypes.node,
-};
-
-export default Container;
+// Container.propTypes = { onSubmit: PropTypes.func.isRequired };

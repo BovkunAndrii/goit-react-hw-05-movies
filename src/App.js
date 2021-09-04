@@ -1,55 +1,33 @@
 import { lazy, Suspense } from 'react';
-import { Switch, Route } from 'react-router';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import './App.css';
-import AppBar from './components/AppBar/AppBar';
-import Container from './components/Container/Container';
-import { GalleryLoader } from './components/Loader/Loader';
+import { Switch, Route } from 'react-router-dom';
+
+import Container from 'components/Container';
+import Navigation from 'components/Navigation';
+import Loader from 'components/Loader';
+
 const HomePage = lazy(() =>
-  import('./pages/HomePage' /* webpackChunkName: "home-page" */),
+  import('views/HomePage' /* webpackChunkName: "home-page" */),
+);
+const MoviesPage = lazy(() =>
+  import('views/MoviesPage' /* webpackChunkName: "movies-page" */),
 );
 const MovieDetailsPage = lazy(() =>
   import(
-    './pages/MovieDetailsPage' /* webpackChunkName: "movie-details-page" */
+    'views/MovieDetailsPage' /* webpackChunkName: "movies-details-page" */
   ),
 );
-const MoviesPage = lazy(() =>
-  import('./pages/MoviesPage' /* webpackChunkName: "movies -page" */),
-);
-const NoteFoundPage = lazy(() =>
-  import('./pages/NoteFoundPage' /* webpackChunkName: "not -found-view" */),
-);
 
-function App() {
+export default function App() {
   return (
     <Container>
-      <ToastContainer />
-      <AppBar />
-      <Suspense
-        fallback={
-          <h1>
-            <GalleryLoader />
-          </h1>
-        }
-      >
+      <Navigation />
+      <Suspense fallback={<Loader />}>
         <Switch>
-          <Route path="/" exact>
-            <HomePage />
-          </Route>
-          <Route path="/movies" exact>
-            <MoviesPage />
-          </Route>
-          <Route path="/movies/:movieId">
-            <MovieDetailsPage />
-          </Route>
-          <Route>
-            <NoteFoundPage />
-          </Route>
+          <Route exact path="/" component={HomePage}></Route>
+          <Route path="/movies/:movieId" component={MovieDetailsPage}></Route>
+          <Route path="/movies" component={MoviesPage}></Route>
         </Switch>
       </Suspense>
     </Container>
   );
 }
-
-export default App;
